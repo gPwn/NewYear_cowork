@@ -1,7 +1,7 @@
 const { request } = require("express");
 const express = require("express");
 const router = express.Router();
-const { Lists } = require("../models");
+const { Lists } = require("../../models");
 
 router.post("/posts", async (req, res) => {
   console.log(req.body);
