@@ -1,5 +1,6 @@
-'use strict';
-const {Model} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Lists extends Model {
     /**
@@ -13,69 +14,24 @@ module.exports = (sequelize, DataTypes) => {
   }
   Lists.init(
     {
-    listId: {
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
-      type: DataTypes.INTEGER,
-    },
-
-    userId: {
-      type: Sequelize.DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "Users",
-        key: "userId",
+      listId: {
+        // autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
       },
-      onDelete: "cascade",
-    },
-
-    id: {
-      type: Sequelize.DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "Users",
-        key: "id",
+      userId: {
+        required: true,
+        type: DataTypes.STRING,
       },
-      onDelete: "cascade",    //ON UPDATE CASCADE 를 설정하면 UPDATE 를 할 때 CASCADE 옵션이 적용
-    },
-
-    nickname: {
-      type: Sequelize.DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "Users",
-        key: "nickname",
+      content: {
+        required: true,
+        type: DataTypes.STRING,
       },
-      onDelete: "cascade",
     },
-   
-    content: {
-      type: Sequelize.DataTypes.STRING,
-      allowNull: false,
-    },
-    
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DataTypes.DATE,
-      defaultValue: Sequelize.DataTypes.NOW,
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DataTypes.DATE,
-      defaultValue: Sequelize.DataTypes.NOW,
-    },
-  },
- 
-  
     {
-
-        sequelize,
-        modelName: 'Lists',
-    
+      sequelize,
+      modelName: "Lists",
     }
-  
-    );
-
+  );
   return Lists;
 };
