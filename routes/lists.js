@@ -10,12 +10,14 @@ router.post("/", async (req, res) => {
     const { content } = req.body;
     console.log(content);
     try {
-      await Lists.create({
-        content: content,
-      });
+
       if (content.length === 0) {
         return res.status(412).json({ message: "content에 내용을 입력해주세요" });
       }
+
+      await Lists.create({
+        content: content,
+      });
       res.status(201).json({ message: "신년 계획이 추가되었습니다." });
     } catch (error) {
       console.log(error);
