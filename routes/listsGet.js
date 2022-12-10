@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const { Op } = require("sequelize");
 
@@ -109,5 +109,9 @@ router.get('/get', async (req, res) => {
 //     return res.status(400).json({errorMessage : "리스트 삭제가 정상적으로 처리되지 않았습니다."});
 //   }
 // })
+
+// router.get('/get', (req, res) => {
+//     res.send("Server: listGet");
+//   });
 
 module.exports = router;
