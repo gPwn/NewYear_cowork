@@ -7,25 +7,31 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.DataTypes.INTEGER,
       },
-      nickname: {
-        type: Sequelize.STRING,
+      loginId: {
+        type: Sequelize.DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
+      nickname: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true,
+        unique: true,
+      },
       password: {
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.DataTypes.NOW,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.DataTypes.NOW,
       },
     });
   },

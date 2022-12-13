@@ -8,32 +8,26 @@ const authLoginUserMiddleware = require('../middlewares/authLoginUserMiddleware'
 const router = express.Router();
 require('dotenv').config();
 
-const loginSchema = Joi.object({
-    nickname: Joi.string().required(),
-    password: Joi.string().required(),
-});
-
-
 router.post('/', authLoginUserMiddleware, async (req, res) => {
 try {
-const { nickname, password } = await loginSchema.validateAsync(req.body);
-const user = await Users.findOne({
-    where: {
-        [Op.and]: [{ nickname }, { password }],
-    },
-});
-
-if (!user) {
-    return res.status(412).send({
-        errorMessage: '닉네임 또는 패스워드를 확인해주세요.',
+    const { loginId, password } = req.body;
+    const user = await Users.findOne({
+        where: {
+            [Op.and]: [{ loginId }, { password }],
+        },
     });
-}
 
-if (nickname !== password) {
-    return res.status(412).send({
-        errorMessage: '닉네임 또는 패스워드가 일치하지 않습니다.',
-    });
-}
+    if (!user) {
+        return res.status(412).send({
+            errorMessage: '닉네임 또는 패스워드를 확인해주세요.',
+        });
+    }
+
+    if (loginId !== user.loginId || password !== user.password) {
+        return res.status(412).send({
+            errorMessage: '닉네임 또는 패스워드가 일치하지 않습니다.',
+        });
+    }
 
     const expires = new Date();
     expires.setMinutes(expires.getMinutes() + 60);

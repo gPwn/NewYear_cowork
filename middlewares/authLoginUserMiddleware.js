@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const { Users } = require('../models');
+const { Users, Lists } = require('../models');
 require('dotenv').config();
 
 // 로그인 되어 있는 유저일 경우 Error를 반환한다.
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const cookies = req.cookies[process.env.COOKIE_NAME];
     if (cookies) {
@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
 
     next();
   } catch (error) {
+    // console.log(error);
     return res.status(400).send({
       errorMessage: '잘못된 접근입니다.',
     });

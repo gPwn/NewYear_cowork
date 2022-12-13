@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
   class Lists extends Model {
     /**
@@ -10,22 +9,39 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Lists.belongsTo(models.Users, { 
+        foreignKey : "userId" 
+      });
     }
   }
   Lists.init(
     {
       listId: {
-        // autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
       userId: {
-        required: true,
-        type: DataTypes.STRING,
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "userId",
+        },
+        onDelete: "cascade",
       },
       content: {
-        required: true,
+        allowNull: false,
         type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
       },
     },
     {
