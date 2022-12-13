@@ -1,8 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-
-Model.sync({ force: true})
-
 module.exports = (sequelize, DataTypes) => {
   class Lists extends Model {
     /**
@@ -12,16 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // this.belongsTo(models.User, { foreignKey: "userId" });
-      this.hasMany(models.User, {foreignKey : "userId", as : "us" })
-      // Shop.hasMany(ShopAd, {foreignKey : 'shop_id', as : 'ads'});
+      Lists.belongsTo(models.Users, { 
+        foreignKey : "userId" 
+      });
     }
   }
   Lists.init(
     {
       listId: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
@@ -32,17 +27,8 @@ module.exports = (sequelize, DataTypes) => {
           model: "Users",
           key: "userId",
         },
+        onDelete: "cascade",
       },
-      // ID : {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   // unique: true,
-      // },
-      // nickname: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      //   // unique: true,
-      // },
       content: {
         allowNull: false,
         type: DataTypes.STRING,

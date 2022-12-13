@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER,
       },
-      ID : {
+      loginId: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -20,17 +20,18 @@ module.exports = {
         unique: true,
       },
       password: {
+        allowNull: false,
         type: Sequelize.DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.DataTypes.NOW,
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.DataTypes.NOW,
       },
     });
   },
