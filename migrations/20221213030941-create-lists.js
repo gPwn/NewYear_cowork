@@ -11,7 +11,21 @@ module.exports = {
       },
       userId: {
         allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+        references: {
+          model: "Users",
+          key: "userId",
+        },
+      },
+      ID : {
         type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+        // unique: true,
+      },
+      nickname: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: true,
+        // unique: true,
       },
       content: {
         allowNull: false,

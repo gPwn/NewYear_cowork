@@ -9,19 +9,20 @@ const router = express.Router();
 require('dotenv').config();
 
 const loginSchema = Joi.object({
-    nickname: Joi.string().required(),
+    ID: Joi.string().required(),
     password: Joi.string().required(),
 });
 
 
 router.post('/', authLoginUserMiddleware, async (req, res) => {
 try {
-const { nickname, password } = await loginSchema.validateAsync(req.body);
+const { ID, password } = req.body;
 const user = await Users.findOne({
     where: {
-        [Op.and]: [{ nickname }, { password }],
+        [Op.and]: [{ ID }, { password }],
     },
 });
+console.log(user)
 
 if (!user) {
     return res.status(412).send({
@@ -29,7 +30,7 @@ if (!user) {
     });
 }
 
-if (nickname !== password) {
+if (ID !== user.ID || password !== user.password) {
     return res.status(412).send({
         errorMessage: '닉네임 또는 패스워드가 일치하지 않습니다.',
     });

@@ -2,6 +2,9 @@
 const {
   Model
 } = require('sequelize');
+
+Model.sync({ force: true})
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -10,24 +13,42 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      this.belongsTo(models.List, { foreignKey: "listId" });
       // define association here
     }
   }
   User.init(
     {
       userId: {
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      nickname: {
-        required: true,
+      ID : {
         type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      nickname: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        unique: true,
       },
       password: {
-        required: true,
         type: DataTypes.STRING,
       },
-  }, 
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+      },
+    }, 
   {
     sequelize,
     modelName: 'Users',
