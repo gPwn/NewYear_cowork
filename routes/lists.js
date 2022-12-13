@@ -32,16 +32,15 @@ router.get('/', async (req, res) => {
         include: [{ model: Users, attributes: ["nickname", "loginId"] }]
       })
       
-      const lists = [];
-      list.forEach((list) => {
-        lists.push ({
+      const lists = list.map((list) => {
+        return {
           listId : list.listId,
           loginId : list.User.loginId,
           nickname : list.User.nickname,
           content : list.content,
           createdAt : list.createdAt,
           updatedAt : list.updatedAt
-        })
+        }
       });
   
       return res.send({results : lists});
