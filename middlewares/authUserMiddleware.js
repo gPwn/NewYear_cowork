@@ -24,6 +24,16 @@ module.exports = async (req, res, next) => {
     res.locals.user = user;
     // console.log(user);
 
+    // const changeList = await Lists.findOne({
+    //   where: { listId },
+    // });
+    // if (changeList == null) {
+    //   res.status(404).json({ errorMessage: "변경할 리스트가 존재하지 않습니다." });
+    // }
+    // if (changeList.userId !== userId) {
+    //   res.status(404).json({ errorMessage: "리스트 변경할 권한이 없습니다." });
+    // }
+
     next();
   } catch (error) {
     res.locals.user = { userId: undefined };
