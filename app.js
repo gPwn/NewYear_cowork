@@ -4,14 +4,17 @@ const routes = require('./routes');
 require('dotenv').config();
 
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 const app = express();
 const http = Http.createServer(app);
 const port = process.env.EXPRESS_PORT;
 
-app.use(cookieParser());
-app.use(express.json());
-app.use('/api', routes);
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(cookieParser())
+
+app.use('/', routes);
 
 http.listen(port, (req, res) => {
   console.log(`Start listen Server:test ${port}`);
