@@ -1,38 +1,61 @@
 const { Lists, Users } = require("../models");
-const { user } = res.locals;
 
 class listRepository {
     constructor() {}
-
+    
     //리스트 조회 저장소
     getAllList = async({}) => {
         const lists = await Lists.findAll({
             include: [{ 
                 model: Users, 
-                attributes: ["nickname", "loginId"] 
             }],
             order: [["createdAt", "DESC"]]
         });
         return lists;
     };
 
+    findUser = async ({userId}) => {
+        const user = await Users.findOne({
+            where : { userId }
+        });
+        return user;
+    };
+
+    findList = async ({listId}) => {
+        const list = await Lists.findOne({
+            where: { listId },
+        });
+        return list;
+    };
+
     createList = async ({
         content,
-        userId,
-        loginId,
-        nickname
+        userId
     }) => {
-        const lists =  await Lists.create({
+        const lists = await Lists.create({
             content,
-            userId : user.userId,
-            loginId : user.loginId,
-            nickname : user.nickname
+            userId,
         });
         return lists;
-    }
+    };
 
+    updateList = async ({
+        content,
+        listId,
+    }) => {
+        const list = await Lists.update({ content }, 
+            { where: { listId } });
+        return list;
+    };
 
-
+    deleteList = async ({
+        listId,
+    }) => {
+        const list = await Lists.destroy(
+            { where: { listId }
+        });
+        return list;
+    };
 };
 
 module.exports = listRepository;

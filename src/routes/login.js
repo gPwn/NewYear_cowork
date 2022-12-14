@@ -50,4 +50,9 @@ try {
       }
     });
 
+const authUserMiddleware = require("../middlewares/authUserMiddleware.js");
+router.get("/me", authUserMiddleware, async(req, res) => {
+  res.status(200).json({user : res.locals.user});
+});
+
 module.exports = router;
