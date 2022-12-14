@@ -1,7 +1,7 @@
 const express = require("express");
 const Joi = require('Joi');
-const { Users, sequelize, Sequelize } = require('../../models');
-const authLoginUserMiddware = require('../../middlewares/authLoginUserMiddleware');
+const { Users, sequelize, Sequelize } = require('../models');
+const authLoginUserMiddware = require('../middlewares/authLoginUserMiddleware');
 
 const router = express.Router();
 

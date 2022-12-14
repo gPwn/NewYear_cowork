@@ -1,9 +1,9 @@
 const express = require("express");
 const Joi = require('joi');
-const { Users } = require('../../models');
+const { Users } = require('../models');
 const { Op } = require('sequelize');
 const jwt = require('jsonwebtoken');
-const authLoginUserMiddleware = require('../../middlewares/authLoginUserMiddleware');
+const authLoginUserMiddleware = require('../middlewares/authLoginUserMiddleware');
 
 const router = express.Router();
 require('dotenv').config();

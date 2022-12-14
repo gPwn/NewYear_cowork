@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { Lists, Users } = require("../../models");
-const authUserMiddleware = require("../../middlewares/authUserMiddleware.js");
+const { Lists, Users } = require("../models");
+const authUserMiddleware = require("../middlewares/authUserMiddleware.js");
 
 router.post("/", authUserMiddleware, async (req, res) => {
     const { content } = req.body;
