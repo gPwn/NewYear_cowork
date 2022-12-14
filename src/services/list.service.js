@@ -1,6 +1,3 @@
-const { Lists, Users } = require("../models");
-const { Op } = require('sequelize');
-
 const listRepository = require('../repositories/list.repository');
 const { ValidationError, ExistError } = require('../exceptions/index.exception');
 
