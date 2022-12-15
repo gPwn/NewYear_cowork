@@ -1,4 +1,5 @@
 const express = require("express");
+import { LoginService } from '../services/login.service';
 const Joi = require('joi');
 const { Users } = require('../models');
 const { Op } = require('sequelize');
@@ -11,11 +12,9 @@ require('dotenv').config();
 router.post('/', authLoginUserMiddleware, async (req, res) => {
 try {
     const { loginId, password } = req.body;
-    const user = await Users.findOne({
-        where: {
-            [Op.and]: [{ loginId }, { password }],
-        },
-    });
+
+    const resultData = await LoginService(loginId, password)
+
 
     if (!user) {
         return res.status(412).send({
@@ -49,10 +48,5 @@ try {
         });
       }
     });
-
-const authUserMiddleware = require("../middlewares/authUserMiddleware.js");
-router.get("/me", authUserMiddleware, async(req, res) => {
-  res.status(200).json({user : res.locals.user});
-});
 
 module.exports = router;
