@@ -16,9 +16,9 @@ class LoginController {
 
   login = (async (req, res) => {
     try {
-      const { nickname, password } = req.body;
+      const { loginId, password } = req.body;
 
-      const resultUser = await this.loginService.findUser(nickname, password)
+      const resultUser = await this.loginService.findUser(loginId, password)
 
       const expires = new Date();
       expires.setMinutes(expires.getMinutes() + 60);
@@ -29,6 +29,7 @@ class LoginController {
       });
       return res.status(200).json({ token });
     } catch (error) {
+      console.log(error);
       console.log(`${req.method} ${req.originalUrl} : ${error.message}`);
       return res.status(400).send({
         errorMessage: '로그인에 실패하였습니다.',

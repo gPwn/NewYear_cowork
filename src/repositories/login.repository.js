@@ -4,11 +4,11 @@ const { Op } = require('sequelize');
 
 class LoginRepository {
 
-    findUser = async (nickname, password) => {
+    findUser = async (loginId, password) => {
 
         const user = await Users.findOne({
             where: {
-                [Op.and]: [{ nickname }, { password }],
+                [Op.and]: [{ loginId }, { password }],
             },
         });
 

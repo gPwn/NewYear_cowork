@@ -9,10 +9,10 @@ class LoginService {
     this.loginRepository = new LoginRepository();
   }
 
-  findUser = async (nickname, password) => {
+  findUser = async (loginId, password) => {
 
-    const resultData = await this.loginRepository.findUser(nickname, password)
-    if (nickname !== resultData.nickname || password !== resultData.password) {
+    const resultData = await this.loginRepository.findUser(loginId, password)
+    if (loginId !== resultData.loginId || password !== resultData.password) {
       // return res.status(412).send({
       //     errorMessage: '닉네임 또는 패스워드가 일치하지 않습니다.',
       // });
