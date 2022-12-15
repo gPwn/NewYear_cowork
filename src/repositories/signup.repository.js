@@ -1,3 +1,4 @@
+
 const { Users } = require("../models");
 
 class signupRepository {
@@ -21,3 +22,4 @@ class signupRepository {
   };
 }
 module.exports = signupRepository;
+

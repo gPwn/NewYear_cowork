@@ -1,3 +1,4 @@
+
 const listService = require('../services/list.service');
 
 class ListController {
@@ -79,29 +80,3 @@ class ListController {
 };
 
 module.exports = ListController;
-
-// router.delete("/:listId",authUserMiddleware, async (req, res) => {
-//   try {
-//     let { listId } = req.params;
-//     const { userId } = res.locals.user
-
-//     const delList = await Lists.findOne({
-//       where: { listId },
-//     });
-
-//     const changeList = await Lists.findOne({
-//       where: { listId },
-//     });
-//     if (changeList == null) {
-//       return res.status(404).json({ errorMessage: "변경할 리스트가 존재하지 않습니다." });
-//     }
-//     if (changeList.userId !== userId) {
-//       return res.status(404).json({ errorMessage: "리스트 변경할 권한이 없습니다." });
-//     }
-
-//     await Lists.destroy({where: {listId}});
-//     return res.status(200).json({ message: "리스트가 삭제하였습니다." });
-//   } catch (error) {
-//     return res.status(400).json({ errorMessage: "리스트가 정상적으로 삭제되지 않았습니다." });
-//   }
-// });

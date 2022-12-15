@@ -6,7 +6,7 @@ const authLoginUserMiddleware = require("../middlewares/authLoginUserMiddleware.
 const SignupController = require("../controllers/signup.controller");
 const signupController = new SignupController();
 
-router.post('/', /*authLoginUserMiddleware,*/ signupController.createSignup);
+router.post('/', authLoginUserMiddleware, signupController.createSignup);
 
 
 module.exports = router;
