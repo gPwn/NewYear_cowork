@@ -7,7 +7,5 @@ const loginController = new LoginController();
 const router = express.Router();
 require('dotenv').config();
 
-router.post('/', loginController.login
-
-)
+router.post('/', loginController.login)
 module.exports = router;
