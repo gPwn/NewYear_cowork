@@ -10,7 +10,7 @@ class LoginService {
   }
 
   findUser = async (nickname, password) => {
-    console.log(2)
+
     const resultData = await this.loginRepository.findUser(nickname, password)
     if (nickname !== resultData.nickname || password !== resultData.password) {
       // return res.status(412).send({
@@ -23,7 +23,7 @@ class LoginService {
   }
 
   createToken = async (userId) => {
-    console.log(4)
+
     const token = jwt.sign(
       { userId: userId },
       process.env.SECRET_KEY,

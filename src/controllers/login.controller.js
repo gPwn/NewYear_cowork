@@ -16,7 +16,6 @@ class LoginController {
 
   login = (async (req, res) => {
     try {
-      console.log(1)
       const { nickname, password } = req.body;
 
       const resultUser = await this.loginService.findUser(nickname, password)
