@@ -13,12 +13,12 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use('/', routes);
+app.use('/api', routes);
 
 http.listen(port, (req, res) => {
-  console.log(`Start listen Server:test ${port}`);
+    console.log(`Start listen Server:test ${port}`);
 });
 
 module.exports = http;

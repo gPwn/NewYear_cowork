@@ -9,7 +9,7 @@ class listRepository {
             include: [{ 
                 model: Users, 
             }],
-            order: [["createdAt", "DESC"]]
+            // order: [["createdAt", "DESC"]]
         });
         return lists;
     };

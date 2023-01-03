@@ -20,6 +20,12 @@ class listService {
                 updatedAt : e.updatedAt
             }
         });
+        //나중에 생성된 리스트 부터 조회되게 하기(service에서 조절)
+        lists.sort((a,b) => {
+            if (a.createdAt > b.createdAt) {
+            return -1
+        }
+        }) 
         return lists;
     };
 
