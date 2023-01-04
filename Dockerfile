@@ -1,6 +1,6 @@
-FROM node:16-alpine
+FROM --platform=linux/amd64 node:16-alpine
 
-WORKDIR /app
+WORKDIR /src/app
 COPY package.json /app
 RUN npm install
 COPY . /app
