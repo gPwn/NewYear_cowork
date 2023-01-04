@@ -38,7 +38,7 @@ jobs:
               with:
                   registry: gpwn.io
                   username: ${{ github.actor }}
-                  password: ${{ secrets.CICD_TEST }}
+                  password: ${{ secrets.GHCR_TOKEN }}
             - name: Build and push
               id: docker_build
               uses: docker/build-push-action@v2
@@ -57,7 +57,7 @@ jobs:
               with:
                   registry: gpwn.io
                   username: ${{ github.actor }}
-                  password: ${{ secrets.CICD_TEST }}
+                  password: ${{ secrets.GHCR_TOKEN }}
             # 3000 -> 80 포트로 수행하도록 지정
             - name: Docker run
               run: |
