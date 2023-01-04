@@ -10,7 +10,7 @@ router.use('/lists', require('./lists.js'));
 // const config = require(__dirname + '/../config/config.js')[env];
 
 router.get('/', (req, res) => {
-    res.send('Server: api cicdtest!!');
+    res.send('Server: api cicdtest!! 성공 후 테스트!!');
 });
 
 module.exports = router;
